@@ -14,6 +14,10 @@ def permutations_by_sorting(s1, s2):
     return True
 
 def count_chars(s):
+    """Assuming that s is a string of ASCII characters, count
+    the number of times that each character appears in the string.
+    Return a list of length 256 of the counts."""
+
     count = [0] * 256
     for char in s:
         count[ord(char)] += 1
