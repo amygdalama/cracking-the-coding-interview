@@ -1,7 +1,9 @@
-def permutations(s1, s2):
-    """Determine if s1 and s2 are permutations of eachother, meaning
+def permutations_by_sorting(s1, s2):
+    """Determine if s1 and s2 are permutations of each other, meaning
     they have the same characters but possibly in different order.
-    Whitespace and capitalization are significant."""
+    Whitespace and capitalization are significant.
+    Use the sorting method."""
+
     if len(s1) != len(s2):
         return False
     s1 = sorted(s1)
@@ -10,6 +12,23 @@ def permutations(s1, s2):
         if s1[i] != s2[i]:
             return False
     return True
+
+def count_chars(s):
+    count = [0] * 256
+    for char in s:
+        count[ord(char)] += 1
+    return count
+
+
+def permutations_by_char_count(s1, s2):
+    """Determine if s1 and s2 are permutations of each other, meaning
+    they have the same characters but possibly in different order.
+    Whitespace and capitalization are significant.
+    Use the sorting method."""
+
+    s1_count = count_chars(s1)
+    s2_count = count_chars(s2)
+    return s1_count == s2_count
 
 
 if __name__ == '__main__':
@@ -20,4 +39,4 @@ if __name__ == '__main__':
         ("cat", "", False),
         )
     for s1, s2, expected in test_strings:
-        print expected == permutations(s1, s2)
+        print expected == permutations_by_char_count(s1, s2)
