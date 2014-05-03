@@ -8,11 +8,10 @@ def sorted_list_has_unique_characters(l):
         return sorted_list_has_unique_characters(l[1:])
 
 
-def string_has_unique_characters(s):
+def string_has_unique_characters(s, other_data_structures=True):
     """Determines if a string has all unique characters."""
 
     l = sorted(s.lower())
-
     return sorted_list_has_unique_characters(l)
 
 if __name__ == '__main__':
