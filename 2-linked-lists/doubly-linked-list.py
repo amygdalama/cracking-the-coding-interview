@@ -50,10 +50,11 @@ class LinkedList(object):
             yield node.cargo
             node = node.next
 
-    
-l = LinkedList()
-l.append("thing")
-l.append("cat")
-l.append("bird")
-for cargo in l.elements():
-    print cargo
+
+if __name__ == '__main__':
+    l = LinkedList()
+    l.append("thing")
+    l.append("cat")
+    l.append("bird")
+    for cargo in l.elements():
+        print cargo
