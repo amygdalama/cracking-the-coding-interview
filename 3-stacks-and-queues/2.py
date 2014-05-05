@@ -1,4 +1,9 @@
-from structures import Stack
+from structures import Node, Stack
+
+class MinNode(Node):
+    def __init__(self, cargo=None, next=None, min=None):
+        super(MinNode, self).__init__(cargo, next)
+        self.min = None
 
 class MinStack(Stack):
     def __init__(self):
@@ -6,9 +11,14 @@ class MinStack(Stack):
         self.min = None
 
     def push(self, item):
-        if self.min == None or item < self.min:
-            self.min = item
-        super(MinStack, self).push(item)
+        top = MinNode(item)
+        if not self.top or item < self.top.min:
+            top.min = item
+        else:
+            top.min = self.top.min
+        top.next = self.top
+        self.top = top
+        self.min = self.top.min
 
 if __name__ == '__main__':
     m = MinStack()
