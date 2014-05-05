@@ -52,13 +52,21 @@ class LinkedList(object):
             n = n.next
         return False
 
-    def insert(self, cargo, index=0):
+    def insert(self, cargo, target=0):
         pass
 
     def index(self, cargo):
-        pass
+        n = self.head
+        index = 0
+        while n.cargo != cargo:
+            index += 1
+            if n.next:
+                n = n.next
+            else:
+                raise ValueError("%s is not in linked list" % cargo)
+        return index
 
-    def pop(self, index=0):
+    def pop(self, target=0):
         pass
 
     def elements(self):
@@ -81,6 +89,12 @@ if __name__ == '__main__':
     assert l.size() == 3
     assert l.search("cat") == False
     assert l.search("bird") == True
-
+    assert l.index("first") == 0
+    assert l.index("thing") == 1
+    assert l.index("bird") == 2
+    try:
+        l.index("nonsense")
+    except ValueError:
+        pass
     for element in l.elements():
         print element
