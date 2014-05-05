@@ -36,6 +36,31 @@ class LinkedList(object):
                 return
             n = n.next
 
+    def size(self):
+        count = 0
+        n = self.head
+        while n:
+            count += 1
+            n = n.next
+        return count
+
+    def search(self, target):
+        n = self.head
+        while n:
+            if n.cargo == target:
+                return True
+            n = n.next
+        return False
+
+    def insert(self, cargo, index=0):
+        pass
+
+    def index(self, cargo):
+        pass
+
+    def pop(self, index=0):
+        pass
+
     def elements(self):
         node = self.head
         while node:
@@ -45,10 +70,17 @@ class LinkedList(object):
     
 if __name__ == '__main__':
     l = LinkedList()
+    assert l.search("thing") == False
+    assert l.size() == 0
     l.append("thing")
     l.append("cat")
     l.append("bird")
     l.add("first")
+    assert l.size() == 4
     l.delete("cat")
+    assert l.size() == 3
+    assert l.search("cat") == False
+    assert l.search("bird") == True
+
     for element in l.elements():
         print element
