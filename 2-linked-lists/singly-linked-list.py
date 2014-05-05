@@ -1,5 +1,5 @@
 class Node(object):
-    def __init__(self, cargo=None, previous=None, next=None):
+    def __init__(self, cargo=None, next=None):
         self.cargo = cargo
         self.next = next
 
@@ -8,23 +8,36 @@ class Node(object):
 
 class LinkedList(object):
     def __init__(self):
-        self.n = 0
-        self.last = Node()
-        self.first = self.last
+        self.head = None
 
     def append(self, cargo):
-        self.last.next = Node()
-        self.last.next.cargo = cargo
-        self.last = self.last.next
-        if self.n == 0:
-            self.first = self.last
-        self.n += 1
+        n = self.head
+        end = Node(cargo)
+        if n == None:
+            self.head = end
+        else:
+            while n.next:
+                n = n.next
+            n.next = end
 
-    def size(self):
-        return self.n
+    def add(self, cargo):
+        n = Node(cargo)
+        n.next = self.head
+        self.head = n
+
+    def delete(self, cargo):
+        n = self.head
+        if n.cargo == cargo:
+            self.head = self.head.next
+            return
+        while n.next:
+            if n.next.cargo == cargo:
+                n.next = n.next.next
+                return
+            n = n.next
 
     def elements(self):
-        node = self.first
+        node = self.head
         while node:
             yield node.cargo
             node = node.next
@@ -32,12 +45,10 @@ class LinkedList(object):
     
 if __name__ == '__main__':
     l = LinkedList()
-    print l.size()
     l.append("thing")
-    print l.size()
     l.append("cat")
-    print l.size()
     l.append("bird")
-    print l.size()
-    for cargo in l.elements():
-        print cargo
+    l.add("first")
+    l.delete("cat")
+    for element in l.elements():
+        print element
