@@ -5,21 +5,16 @@ def remove_duplicates(l):
 
     -- l: a singly linked list"""
 
-    node = l.head
-    if node:
-        elements = {node.cargo}
-    else:
-        return
-    while node.next:
-        print "==============="
-        print "Current element: ", node.cargo
-        print "Next element: ", node.next.cargo
-        if node.next.cargo in elements:
-            print "It's a dupe!"
-            node.next = node.next.next
+    n = l.head
+    previous = None
+    elements = set()
+    while n:
+        if n.cargo in elements:
+            previous.next = n.next
         else:
-            elements.add(node.next.cargo)
-        node = node.next
+            elements.add(n.cargo)
+            previous = n
+        n = n.next
     return l
 
 if __name__ == '__main__':
