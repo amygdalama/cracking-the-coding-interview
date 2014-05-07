@@ -38,6 +38,8 @@ class Queue(object):
         if self.first:
             item = self.first.cargo
             self.first = self.first.next
+            if not self.first:
+                self.last = None
             return item
 
 if __name__ == '__main__':
