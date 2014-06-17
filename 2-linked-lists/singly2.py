@@ -42,6 +42,18 @@ class LinkedList(object):
             previous = current
             current = current.next
 
+    def reverse(self):
+        previous = None
+        current = self.head
+        next = current.next
+        while next:
+            print previous, current, next
+            current.next = previous
+            previous = current
+            current = next
+            next = current.next
+        current.next = previous
+        self.head = current
 
 if __name__ == '__main__':
     l = range(8)
@@ -64,3 +76,6 @@ if __name__ == '__main__':
     linked.append(14)
     l.append(14)
     assert repr(linked) == repr(l)
+    print linked
+    linked.reverse()
+    print linked
