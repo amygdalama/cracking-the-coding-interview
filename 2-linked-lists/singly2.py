@@ -73,6 +73,6 @@ if __name__ == '__main__':
     linked.append(14)
     l.append(14)
     assert repr(linked) == repr(l)
-    print linked
     linked.reverse()
-    print linked
+    l.reverse()
+    assert repr(linked) == repr(l)
